@@ -1,0 +1,20 @@
+<div>
+    <nb-card-body>
+        <label>New todo</label>
+        <br>
+        <input type="text" nbInput placeholder="Add todo" [(ngModel)]="inputTodo.content">
+        <br>
+        <label>Add realate person</label>
+        <br>
+        <input type="text" nbInput placeholder="Enter relate person" [(ngModel)]="inputTodo.relatePerson">
+        <br>
+        <label>Estimate due date</label>
+        <br>
+        <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" [(ngModel)]="inputTodo.estimateDate">
+        <nb-datepicker #dateTimePicker></nb-datepicker>
+        <br>
+        <br>
+        <button (click)="addTodo()" nbButton status="primary">Add</button>
+    </nb-card-body>
+    <app-todo-item [todos]="todos"(deleteTodoItem)="handleDelete($event)"></app-todo-item>     
+</div>
