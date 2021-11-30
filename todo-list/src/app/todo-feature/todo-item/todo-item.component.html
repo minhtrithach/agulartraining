@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let todo of todos; let i = index;">
+        <tr *ngFor="let todo of todos; let i = index;"class=" todo {{ (todo.completed ? 'done' : '') }}" (click)="toggleDone(i)">
             <th scope="row">{{ i }}</th>
             <td>{{todo.content}}</td>
             <td>{{todo.startDate | date:'yyyy-MM-dd'}}</td>
@@ -20,12 +20,35 @@
             <td>{{todo.relatePerson}}</td>
             <td>
                 <button nbButton status="danger" (click)="handleDelete(i)">Remove</button>
-                <button nbButton status="primary"(click)="open()">Update</button>
-            </td>
-            <td>
-                
+                <button style="margin:0 0 0 16px" nbButton status="primary" (click)="open(dialog)" (click)="handleUpdateIndex(i)">Update</button>
+                <ng-template #dialog let-data let-ref="dialogRef">
+                    <nb-card>
+                        <nb-card-header>Template Dialog</nb-card-header>
+                        <nb-card-body>
+                            <form>
+                            <label>Update todo</label>
+                            <br>
+                            <input type="text" nbInput placeholder="Add todo"name="updateTodo.content" [(ngModel)]="updateTodo.content">
+                            <br>
+                            <label>Update relate person</label>
+                            <br>
+                            <input type="text" nbInput placeholder="Enter relate person"name="updateTodo.RelatePerson" [(ngModel)]="updateTodo.relatePerson">
+                            <br>
+                            <label>Update estimate due date</label>
+                            <br>
+                            <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" name="updateTodo.estimateDate"[(ngModel)]="updateTodo.estimateDate">
+                            <nb-datepicker #dateTimePicker></nb-datepicker>
+                            </form>
+                            <br>
+                            <br>
+                        </nb-card-body>
+                        <nb-card-footer>
+                            <button style="margin:0 0 0 16px" nbButton status="primary" (click)="handleUpdateTodo(updateTodo)"(click)="ref.close()">Submit</button>
+                            <button nbButton (click)="ref.close()">close</button>
+                        </nb-card-footer>
+                    </nb-card>
+                </ng-template>
             </td>
         </tr>
     </tbody>
-
 </table>

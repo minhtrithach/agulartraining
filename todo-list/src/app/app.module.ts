@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoFeatureComponent } from './todo-feature/todo-feature.component';
 import { TodoItemComponent } from './todo-feature/todo-item/todo-item.component';
-import { TodoItemUpdateComponent } from './todo-feature/todo-item/todo-item-update/todo-item-update.component';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { TodoItemUpdateComponent } from './todo-feature/todo-item/todo-item-upda
     AppComponent,
     TodoFeatureComponent,
     TodoItemComponent,
-    TodoItemUpdateComponent,
+   
     
   ],
   imports: [
@@ -32,7 +33,8 @@ import { TodoItemUpdateComponent } from './todo-feature/todo-item/todo-item-upda
     NbListModule,
     NbCardModule,
     NbDialogModule.forRoot(),
-    NbDialogModule
+    NbDialogModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
